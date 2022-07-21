@@ -6,3 +6,17 @@
 .vs/
 
 out/build/x64-Debug/
+
+*.obj
+
+*.check_cache
+
+build/CMakeFiles/
+
+*.manifest
+
+*.exe
+
+*.cmake
+
+build/compile_commands.json
