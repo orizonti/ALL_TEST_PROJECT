@@ -18,5 +18,8 @@ build/CMakeFiles/
 *.exe
 
 *.cmake
+*.ninja
+*.sln
 
 build/compile_commands.json
+/build/

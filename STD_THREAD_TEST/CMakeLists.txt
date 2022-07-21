@@ -4,6 +4,8 @@
 cmake_minimum_required (VERSION 3.8)
 
 project ("STD_THREAD_TEST")
+
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 # Добавьте источник в исполняемый файл этого проекта.
 add_executable (STD_THREAD_TEST "STD_THREAD_TEST.cpp" "STD_THREAD_TEST.h")
 
