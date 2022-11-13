@@ -3,8 +3,12 @@
 #
 cmake_minimum_required (VERSION 3.8)
 
-project ("STD_CHRONO_TEST")
-# Добавьте источник в исполняемый файл этого проекта.
-add_executable (STD_CHRONO_TEST "STD_CHRONO_TEST.cpp" "STD_CHRONO_TEST.h")
+project ("MOVE_SEMANTICS_TEST")
+
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+# Добавьте источник в исполняемый файл этого проекта.
+add_executable (MOVE_SEMANTICS_TEST "MOVE_SEMANTICS.cpp" "MOVE_SEMANTICS.h")
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
+include_directories("./")
 # TODO: Добавьте тесты и целевые объекты, если это необходимо.

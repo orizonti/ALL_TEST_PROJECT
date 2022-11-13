@@ -5,6 +5,43 @@
 #include <chrono>
 
 using namespace std;
+class BaseClass
+{
+	public:
+	int x = 2;
+	int y = 3;
+	int sum() { return x+y;};
+};
+
+class BaseClass2
+{
+	public:
+	int x = 2;
+	int y = 3;
+	int sum() { return x*y;};
+};
+
+template<typename T>
+class BaseClass3 : public T
+{
+	public:
+	void print_data() { std::cout << sum() << endl;};
+	int yy = 2;
+};
+
+class MyClass: public BaseClass3<BaseClass>
+{
+	public:
+	MyClass(){ std::cout << "Class1 - "; print_data();};
+	int zz = 3;
+};
+
+class MyClass2: public BaseClass3<BaseClass2>
+{
+	public:
+	MyClass2(){ std::cout << "Class2 - "; print_data();};
+	int xx2 = 20;
+};
 
 void TestTime(int Count)
 {
@@ -30,6 +67,11 @@ void TestTime(int Count)
 
 int main(int argc, char* argv[])
 {
+
+	MyClass mm1; //mm1.print_data();
+	MyClass2 mm2; //mm2.print_data();
+	
+
 	cout << "STD CHRONO TEST" << endl;
 	TestTime(1000000);
 	TestTime(2000000);

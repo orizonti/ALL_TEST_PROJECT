@@ -4,6 +4,13 @@
 .vs/ALL_TEST_PROJECT/v16/
 
 .vs/
+*.idx
+/.cache
+/index
+
+settings.json
+compile_commands*
+
 
 out/build/x64-Debug/
 

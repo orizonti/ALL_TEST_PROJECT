@@ -5,8 +5,79 @@
 #include <thread>
 #include <chrono>
 #include <mutex>
+#include <vector>
 
 using namespace std;
+
+
+std::mutex mtx;
+std::recursive_mutex rec_mtx;
+
+
+class MyClass
+{
+    public:
+    void DoWork();
+    void DoWork2(int a);
+};
+
+
+void MainWork();
+void TestPow(int input, int &output); // return reslut by reference
+int TestSum(int x, int y);
+void Print(char ch);
+void PrintWithGuardLock(char ch);
+void TestMutexSynchronization();
+void RecursivePrint(int a);
+void TestRecursiveMutex();
+void TestReturnByReferenceThread();
+void TestReturnFromLambda();
+void TestInvokeClassMethodThread();
+void TestAsyncFuture();
+
+ 
+int main()
+{
+//  TestReturnByReferenceThread(); 
+//  TestReturnFromLambda();
+//  TestInvokeClassMethodThread();
+//  TestMutexSynchronization();
+//  TestRecursiveMutex();
+ 
+   //std::cout << "==========================" << endl;
+   //int x = 0; int y = 2; double z = 2.2;
+   //for(int val: {x,y,y,y,y})
+   //{
+   // std::cout << "val - " << val << endl;
+   //}
+
+  //vector<int> v = {3,44}; 
+  vector<int> v{3,44}; 
+  
+  //v[0] = 34; v[1] = 23;
+  std::cout << v[0] << v[1] << endl;
+ 
+}
+
+
+void MyClass::DoWork()
+{
+    this_thread::sleep_for(chrono::milliseconds(2000));
+    cout << "ID thread :" << this_thread::get_id() << " MY CLASS DO WORK" << endl;
+    this_thread::sleep_for(chrono::milliseconds(5000));
+    cout << "ID thread :" << this_thread::get_id() << " MY CLASS STOPPED WORK" << endl;
+ 
+}
+
+void MyClass::DoWork2(int a)
+{
+    cout << "DO WORK 2 INPUT PARAMETER - " << a << endl;
+    this_thread::sleep_for(chrono::milliseconds(2000));
+    cout << "ID thread :" << this_thread::get_id() << "MY CLASS DO WORK" << endl;
+    this_thread::sleep_for(chrono::milliseconds(5000));
+    cout << "ID thread :" << this_thread::get_id() << "MY CLASS STOPPED WORK" << endl;
+ 
+}
 
 void MainWork()
 {
@@ -31,14 +102,7 @@ int TestSum(int x, int y)
     return x + y;
 }
 
-class MyClass
-{
-    public:
-    void DoWork();
-    void DoWork2(int a);
-};
 
-std::mutex mtx;
 void Print(char ch)
 {
     mtx.lock();
@@ -85,10 +149,19 @@ void TestMutexSynchronization()
    t2.join();
    cout << "===================" << endl;
 
+  
+
 }
 
+//std::vector<int> v1, v2;
+//void test() 
+//{
+//  for (std::vector<int>& vv : { std::ref(v1), std::ref(v2) } ) 
+//  {
+//      vv.push_back(3);
+//  }
+//}
 
-std::recursive_mutex rec_mtx;
 void RecursivePrint(int a)
 {
     rec_mtx.lock();
@@ -158,33 +231,8 @@ void TestInvokeClassMethodThread()
     cout << "===================================================" << endl;
 }
 
- 
-int main()
+void TestAsyncFuture()
 {
-  TestReturnByReferenceThread(); 
-  TestReturnFromLambda();
-  TestInvokeClassMethodThread();
-  TestMutexSynchronization();
-  TestRecursiveMutex();
-
-}
-
-
-void MyClass::DoWork()
-{
-    this_thread::sleep_for(chrono::milliseconds(2000));
-    cout << "ID thread :" << this_thread::get_id() << " MY CLASS DO WORK" << endl;
-    this_thread::sleep_for(chrono::milliseconds(5000));
-    cout << "ID thread :" << this_thread::get_id() << " MY CLASS STOPPED WORK" << endl;
- 
-}
-
-void MyClass::DoWork2(int a)
-{
-    cout << "DO WORK 2 INPUT PARAMETER - " << a << endl;
-    this_thread::sleep_for(chrono::milliseconds(2000));
-    cout << "ID thread :" << this_thread::get_id() << "MY CLASS DO WORK" << endl;
-    this_thread::sleep_for(chrono::milliseconds(5000));
-    cout << "ID thread :" << this_thread::get_id() << "MY CLASS STOPPED WORK" << endl;
- 
+ // std::async() is a function template that accepts a callback(i.e. function or function object)  
+ // as an argument and potentially executes them asynchronously.
 }
